@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EchoMoral Legal — Playbook-Vertragsprüfung &amp; Redlining (NDA, AVV &amp; MSA)</title>
+  <meta name="description" content="Klausel-Risiken in B2B-NDAs, Auftragsverarbeitungsverträgen (Art. 28 DSGVO) &amp; SaaS-MSAs lokal prüfen und Redlines generieren." />
+  <link rel="canonical" href="https://cheresonanz-design.github.io/echomoral-contract-redlining/" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "EchoMoral Legal", "applicationCategory": "BusinessApplication", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "url": "https://cheresonanz-design.github.io/echomoral-contract-redlining/"}</script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand-mark" href="index.html"><span>EchoMoral Legal</span><span class="brand-badge">NDA · AVV · SAAS-MSA</span></a>
+      <nav class="nav-links" aria-label="Hauptnavigation"><a href="index.html" class="active">Vertrags-Scanner</a>
+<a href="nda-avv-msa-scanner/" class="">Klausel-Scanner</a>
+<a href="redline-generator/" class="">Redline-Texte</a>
+<a href="playbook-export/" class="">Playbook Export</a>
+<a href="pro/" class="">Kit &amp; Rollout</a>
+<a href="legal/" class="">Impressum</a><a href="pro/" class="nav-cta">49 EUR Kit</a></nav>
+    </div>
+  </header>
+  
+  <section class="hero"><div class="container"><h1>B2B Vertragsprüfung &amp; Redlining-Engine (100 % lokal)</h1><p>Prüfen Sie vertrauliche NDAs, AVVs und SaaS-Verträge direkt im Browser — mit sofortigen deutschen/englischen Fallback-Klauseln ohne Kanzlei-Upload.</p></div></section>
+  <main class="container">
+    <div class="card">
+      <div class="btn-row" style="margin-top:0;margin-bottom:14px;">
+        <button type="button" class="btn" id="sample1Btn">Demo: US-SaaS MSA (Unbegrenzte Haftung &amp; KI-Training)</button>
+        <button type="button" class="btn" id="sample2Btn">Demo: DACH-Standard AVV (Sauber)</button>
+        <button type="button" class="btn" id="sample3Btn">Demo: NDA mit 5-Jahres-Laufzeit</button>
+      </div>
+      <div class="form-grid">
+        <div><label for="profileInput">Vertragspartner / Dokument</label><input type="text" id="profileInput" /></div>
+        <div><label for="modeSelect">Vertragstyp</label><select id="modeSelect"><option value="msa">SaaS-MSA / Liefervertrag</option><option value="avv">AVV / DPA (Art. 28 DSGVO)</option><option value="nda">B2B NDA / Geheimhaltung</option></select></div>
+        <div><label for="toneSelect">Verhandlungston</label><select id="toneSelect"><option value="partnerschaftlich">Partnerschaftliche Redlines</option><option value="streng">Einkaufs-/Legal-Standard (Hart)</option></select></div>
+      </div>
+      <div class="btn-row"><button type="button" class="btn btn-primary" id="runCheckBtn">Vertragsklauseln prüfen</button></div>
+    </div>
+
+    <div id="resultCard" class="card hidden">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;">
+        <h2 id="resultHeadline" style="margin:0;">Ergebnis</h2>
+        <div class="btn-row" style="margin:0;">
+          <button type="button" class="btn btn-primary" id="copyActionBtn">Maßnahmentext kopieren</button>
+          <button type="button" class="btn" id="dlCsvBtn">CSV Export (.csv)</button>
+          <button type="button" class="btn" id="dlJsonBtn">JSON Audit (.json)</button>
+        </div>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi-box"><div class="kpi-label">Playbook-Compliance</div><div class="kpi-val" id="kpi1Val">-</div></div>
+        <div class="kpi-box"><div class="kpi-label">Offene Klausel-Risiken</div><div class="kpi-val" id="kpi2Val">-</div></div>
+        <div class="kpi-box"><div class="kpi-label">Abgesichertes Risiko</div><div class="kpi-val" id="kpi3Val">-</div></div>
+        <div class="kpi-box"><div class="kpi-label">Jährl. Haftungsschutz</div><div class="kpi-val" id="kpi4Val">-</div></div>
+      </div>
+      <div class="table-wrap"><table><thead><tr><th>ID</th><th>Position &amp; Kategorie</th><th>Kennzahl</th><th>Effekt</th><th>Status</th><th>Prüfhinweis</th></tr></thead><tbody id="entriesBody"></tbody></table></div>
+      <h3>Versandfertiges Redlining &amp; Fallback-Klauseln</h3>
+      <textarea id="actionBox" readonly aria-label="Maßnahmentext"></textarea>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="offer-card highlight"><div><span class="badge badge-pass">EM-LEGAL-01 · 49 EUR</span><h3>EchoMoral Vertrags-Redlining &amp; Playbook Kit (NDA, AVV, MSA)</h3><div class="offer-price">49 EUR</div><p class="muted">4-Tab Legal Playbook Matrix (Excel), 15 DE/EN Fallback-Klauseln als PDF &amp; Offline Node.js Redline-CLI.</p></div><div class="btn-row"><a href="https://payhip.com/b/0EGUK" class="btn btn-primary">49 EUR Kit bestellen</a><a href="pro/" class="btn">Details</a></div></div>
+      <div class="offer-card"><div><span class="badge badge-warn">EM-LEGAL-ROLLOUT · 2900 EUR</span><h3>EchoMoral B2B Contract Playbook &amp; Redlining Rollout</h3><div class="offer-price">2900 EUR</div><p class="muted">Maßgeschneidertes Einkaufs-/Vertriebs-Playbook für Ihre Standardverträge inkl. Redline-Bibliothek &amp; Team-Workshop.</p></div><div class="btn-row"><a href="https://buy.stripe.com/9B64gs2019wa3ri8bf2400e" class="btn btn-dark">2900 EUR Rollout buchen</a><a href="pro/" class="btn">Umfang</a></div></div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <p><strong>EchoMoral Legal</strong> — Klausel-Risiken in B2B-NDAs, Auftragsverarbeitungsverträgen (Art. 28 DSGVO) &amp; SaaS-MSAs lokal prüfen und Redlines generieren.</p>
+      <p>Che Goncalves Menendez · EchoMoral · by VeriTakt Collective (Gewerbe: ImportKlar) · Liegnitzstr. 53A, 28237 Bremen, Deutschland · Umsatzsteuerbefreit gemäß § 19 UStG (Kleinunternehmerregelung)</p>
+      <p><a href="legal/">Impressum &amp; DSGVO</a> · <a href="pro/">49 EUR Kit &amp; 2900 EUR Rollout</a> · <a href="https://cheresonanz-design.github.io/opskanon-directory/" target="_blank" rel="noopener">Gelistet auf OpsKanon</a></p>
+    </div>
+  </footer>
+  <script src="assets/contract_redline_engine.js"></script><script src="assets/app.js"></script>
+</body>
+</html>

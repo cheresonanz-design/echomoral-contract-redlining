@@ -1,0 +1,6 @@
+# EchoMoral Legal (by VeriTakt Collective)
+> Klausel-Risiken in B2B-NDAs, Auftragsverarbeitungsverträgen (Art. 28 DSGVO) & SaaS-MSAs lokal prüfen und Redlines generieren.
+
+- App: https://cheresonanz-design.github.io/echomoral-contract-redlining/
+- Offers: https://cheresonanz-design.github.io/echomoral-contract-redlining/pro/
+- Legal: https://cheresonanz-design.github.io/echomoral-contract-redlining/legal/
