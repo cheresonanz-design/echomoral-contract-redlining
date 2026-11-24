@@ -35,36 +35,19 @@
         <div><label for="modeSelect">Vertragstyp</label><select id="modeSelect"><option value="msa">SaaS-MSA / Liefervertrag</option><option value="avv">AVV / DPA (Art. 28 DSGVO)</option><option value="nda">B2B NDA / Geheimhaltung</option></select></div>
         <div><label for="toneSelect">Verhandlungston</label><select id="toneSelect"><option value="partnerschaftlich">Partnerschaftliche Redlines</option><option value="streng">Einkaufs-/Legal-Standard (Hart)</option></select></div>
       </div>
-      <div class="divider-top">
-        <div style="font-size:0.86rem;font-weight:700;margin-bottom:8px;">Eigene Position hinzufügen (100 % lokal im Browser)</div>
-        <div class="inline-grid">
-          <div><label for="posIdInput">Pos-ID</label><input type="text" id="posIdInput" placeholder="z. B. POS-04" /></div>
-          <div><label for="posLabelInput">Bezeichnung / Position</label><input type="text" id="posLabelInput" placeholder="Eigene Position eingeben..." /></div>
-          <div><label for="posCategoryInput">Kategorie</label><input type="text" id="posCategoryInput" placeholder="z. B. Prüfung / Risiko" /></div>
-          <div><label for="posMetricInput">Kennzahl</label><input type="number" id="posMetricInput" step="0.01" value="80" /></div>
-          <div><label for="posImpactInput">Effekt (EUR)</label><input type="number" id="posImpactInput" step="0.01" value="0" /></div>
-          <div><label for="posStatusSelect">Status</label><select id="posStatusSelect"><option value="AUTO">Automatik</option><option value="PASS">PASS</option><option value="WARN">WARN</option><option value="FAIL">FAIL</option></select></div>
-          <div><label for="posNoteInput">Prüfhinweis</label><input type="text" id="posNoteInput" placeholder="Kurzer Hinweis oder Maßnahme" /></div>
-        </div>
-        <div class="btn-row">
-          <button type="button" class="btn btn-primary" id="runCheckBtn">Vertragsklauseln prüfen</button>
-          <button type="button" class="btn" id="addItemBtn">+ Position hinzufügen</button>
-          <button type="button" class="btn" id="clearItemsBtn">Positionen leeren</button>
-        </div>
-        <details style="margin-top:12px;">
-          <summary style="cursor:pointer;font-size:0.86rem;font-weight:700;color:var(--slate-500);">CSV / Semikolon-Stapelimport &amp; Direktbearbeitung</summary>
-          <p class="muted" style="margin:6px 0 8px;">Format: <code>ID;Kategorie;Position;Kennzahl;Effekt_EUR;Status;Hinweis</code> (Semikolon oder Komma, lokal im Browser verarbeitet).</p>
-          <textarea id="batchCsvInput" aria-label="CSV Stapelimport"></textarea>
-          <div class="btn-row"><button type="button" class="btn" id="applyCsvBtn">CSV übernehmen &amp; prüfen</button></div>
-        </details>
+      <div style="margin-top:14px;">
+        <label for="contractTextInput">Vertragstext einfügen oder .txt/.md Datei lokal laden (0 Server-Upload)</label>
+        <input type="file" id="contractFileInput" accept=".txt,.md,.csv" style="margin-bottom:8px;" />
+        <textarea id="contractTextInput" rows="8" placeholder="Fügen Sie hier NDA-, AVV- oder SaaS-MSA-Klauseln auf Deutsch oder Englisch ein..."></textarea>
       </div>
+      <div class="btn-row"><button type="button" class="btn btn-primary" id="runCheckBtn">Vertragsklauseln prüfen</button></div>
     </div>
 
     <div id="resultCard" class="card hidden">
       <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;">
         <h2 id="resultHeadline" style="margin:0;">Ergebnis</h2>
         <div class="btn-row" style="margin:0;">
-          <button type="button" class="btn btn-primary" id="copyActionBtn">Maßnahmentext kopieren</button>
+          <button type="button" class="btn btn-primary" id="copyActionBtn">Redline-Entwurf kopieren</button>
           <button type="button" class="btn" id="dlCsvBtn">CSV Export (.csv)</button>
           <button type="button" class="btn" id="dlJsonBtn">JSON Audit (.json)</button>
         </div>
@@ -75,21 +58,20 @@
         <div class="kpi-box"><div class="kpi-label">Abgesichertes Risiko</div><div class="kpi-val" id="kpi3Val">-</div></div>
         <div class="kpi-box"><div class="kpi-label">Jährl. Haftungsschutz</div><div class="kpi-val" id="kpi4Val">-</div></div>
       </div>
-      <div class="table-wrap"><table><thead><tr><th>ID</th><th>Position &amp; Kategorie</th><th>Kennzahl</th><th>Effekt</th><th>Status</th><th>Prüfhinweis</th><th>Aktion</th></tr></thead><tbody id="entriesBody"></tbody></table></div>
+      <div class="table-wrap"><table><thead><tr><th>ID</th><th>Klausel &amp; Kategorie</th><th>Schwere</th><th>Risiko</th><th>Status</th><th>Befund &amp; Fallback-Klausel</th></tr></thead><tbody id="entriesBody"></tbody></table></div>
       <h3>Versandfertiges Redlining &amp; Fallback-Klauseln</h3>
-      <textarea id="actionBox" readonly aria-label="Maßnahmentext"></textarea>
+      <textarea id="actionBox" readonly aria-label="Redline-Entwurf"></textarea>
     </div>
 
     <div class="pricing-grid">
-      <div class="offer-card highlight"><div><span class="badge badge-pass">EM-LEGAL-01 · 49 EUR</span><h3>EchoMoral Vertrags-Redlining &amp; Playbook Kit (NDA, AVV, MSA)</h3><div class="offer-price">49 EUR</div><p class="muted">4-Tab Legal Playbook Matrix (Excel), 15 DE/EN Fallback-Klauseln als PDF &amp; Offline Node.js Redline-CLI.</p></div><div class="btn-row"><a href="https://payhip.com/b/IwDRr" class="btn btn-primary">49 EUR Kit bestellen</a><a href="pro/" class="btn">Details</a></div></div>
-      <div class="offer-card"><div><span class="badge badge-warn">EM-LEGAL-ROLLOUT · 2900 EUR</span><h3>EchoMoral B2B Contract Playbook &amp; Redlining Rollout</h3><div class="offer-price">2900 EUR</div><p class="muted">Maßgeschneidertes Einkaufs-/Vertriebs-Playbook für Ihre Standardverträge inkl. Redline-Bibliothek &amp; Team-Workshop.</p></div><div class="btn-row"><a href="https://buy.stripe.com/9B64gs2019wa3ri8bf2400e" class="btn btn-dark">2900 EUR Rollout buchen</a><a href="pro/" class="btn">Umfang</a></div></div>
+      <div class="offer-card highlight"><div><span class="badge badge-pass">EM-LEGAL-01 · 49 EUR</span><h3>EchoMoral Vertrags-Redlining &amp; Playbook Kit (NDA, AVV, MSA)</h3><div class="offer-price">49 EUR</div><p class="muted">4-Tab Legal Playbook Matrix (Excel), 15 DE/EN Fallback-Klauseln als PDF &amp; Offline Node.js Redline-CLI.</p></div><div class="btn-row"><a href="https://payhip.com/b/IwDRr" class="btn btn-primary" target="_blank" rel="noopener">49 EUR Kit bestellen</a><a href="pro/" class="btn">Details</a></div></div>
+      <div class="offer-card"><div><span class="badge badge-warn">EM-LEGAL-ROLLOUT · 2900 EUR</span><h3>EchoMoral B2B Contract Playbook &amp; Redlining Rollout</h3><div class="offer-price">2900 EUR</div><p class="muted">Maßgeschneidertes Einkaufs-/Vertriebs-Playbook für Ihre Standardverträge inkl. Redline-Bibliothek &amp; Team-Workshop.</p></div><div class="btn-row"><a href="https://buy.stripe.com/9B64gs2019wa3ri8bf2400e" class="btn btn-dark" target="_blank" rel="noopener">2900 EUR Rollout buchen</a><a href="pro/" class="btn">Umfang</a></div></div>
     </div>
   </main>
   <footer class="footer">
     <div class="container">
       <p><strong>EchoMoral Legal</strong> — Klausel-Risiken in B2B-NDAs, Auftragsverarbeitungsverträgen (Art. 28 DSGVO) &amp; SaaS-MSAs lokal prüfen und Redlines generieren.</p>
       <p>Che Goncalves Menendez · EchoMoral · by VeriTakt Collective (Gewerbe: ImportKlar) · Liegnitzstr. 53A, 28237 Bremen, Deutschland · Umsatzsteuerbefreit gemäß § 19 UStG (Kleinunternehmerregelung)</p>
-      <p>Hinweis: Orientierungshilfe mit Beispieldaten, keine Rechts-, Steuer-, Medizin- oder Versicherungsberatung und keine Garantie auf Richtigkeit. Bestellungen und Anfragen bearbeite ich persönlich per E-Mail.</p>
       <p><a href="legal/">Impressum &amp; DSGVO</a> · <a href="pro/">49 EUR Kit &amp; 2900 EUR Rollout</a> · <a href="https://cheresonanz-design.github.io/opskanon-directory/" target="_blank" rel="noopener">Gelistet auf OpsKanon</a></p>
     </div>
   </footer>
